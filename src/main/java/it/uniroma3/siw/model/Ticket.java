@@ -1,18 +1,29 @@
 package it.uniroma3.siw.model;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class Ticket {
 
-	private Integer id;
+
+	@Id
+	@GeneratedValue(strategy =GenerationType.AUTO)
+	private int id;
 	private String client;
 	private String conto;  // aperto o chiuso
 	
-	
+	public Ticket(String client, String conto) {
+		this.client=client;
+		this.conto=conto;
+	}
 	
 	/*****setter and getter******/
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Integer name) {
+	public void setId(int name) {
 		this.id = name;
 	}
 	public String getSurname() {

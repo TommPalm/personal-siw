@@ -1,13 +1,26 @@
 package it.uniroma3.siw.model;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+@Entity
 public class Automobile {
 
+	@Id
 	private String targa;
 	private String model;
 	private String problem;
 	private String stato; //lavoro o pronta
 	
+	public Automobile(String t, String m, String p) {
+		this.targa=t;
+		this.model=m;
+		this.problem=p;
+		this.stato= "lavoro";
+	}
 	
+	public void setPronta() {
+		this.stato="pronta";
+	}
 	
 	/*****getter and setter*/
 	public String getTarga() {
