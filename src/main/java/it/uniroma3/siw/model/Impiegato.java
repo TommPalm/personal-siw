@@ -9,91 +9,53 @@ public class Impiegato {
 
 	@Id
 	@GeneratedValue(strategy =GenerationType.AUTO)
-	private Integer id;
-	@Column(unique=true,nullable=false)
-	private String username;
-	@Column(unique=true,nullable=false)
-	private String password;
-	private String ruolo; //meccanico o dirigente
+	private Long id;
 	
-	
+	@OneToMany(mappedBy="mechanic")
+	private List<Attrezzo> tools;
 	@OneToOne
-	private Task task;
-	@OneToMany
-	private Map<String,Attrezzo> attrezzi; //chiave = nome attrezzo
-	
-	public Impiegato(String name, String pass, String role) {
-		this.username=name;
-		this.password=pass;
-		this.ruolo=role;
-		this.attrezzi = new HashMap<String,Attrezzo>();
-	}
-	
-	
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public Integer getId() {
+	private Credenziali credentials;
+	@OneToMany(mappedBy="mechanic")
+	private List<Auto> cars;
+	public Long getId() {
 		return id;
 	}
-	public String getUsername() {
-		return username;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public List<Attrezzo> getTools() {
+		return tools;
 	}
-	public String getPassword() {
-		return password;
+	public void setTools(List<Attrezzo> tools) {
+		this.tools = tools;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public Credenziali getCredentials() {
+		return credentials;
 	}
-	public String getRuolo() {
-		return ruolo;
+	public void setCredentials(Credenziali credentials) {
+		this.credentials = credentials;
 	}
-	public void setRuolo(String ruolo) {
-		this.ruolo = ruolo;
+	public List<Auto> getCars() {
+		return cars;
 	}
-	public Task getTask() {
-		return this.task;
+	public void setCars(List<Auto> cars) {
+		this.cars = cars;
 	}
-	public void setTask(Task t) {
-		this.task=t;
-	}
-	
-	public void addAttrezzo(Attrezzo a) {
-		this.attrezzi.put(a.getNome(), a);
-	}
-	public void revomeAttrezzo(String n) {
-		this.attrezzi.remove(n);
-	}
-	public Map<String, Attrezzo> getAttrezzi(){
-		return this.attrezzi;
-	}
-	
-	
-	
-	
 	@Override
 	public int hashCode() {
-		return this.getId();
+		return Objects.hash(id);
 	}
-	
-	
 	@Override
-	public boolean equals(Object o) {
-		Impiegato that = (Impiegato) o;
-		return this.getId()!=null && this.getId()==that.getId();
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Impiegato other = (Impiegato) obj;
+		return Objects.equals(id, other.id);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }

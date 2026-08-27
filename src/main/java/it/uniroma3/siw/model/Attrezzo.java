@@ -1,5 +1,7 @@
 package it.uniroma3.siw.model;
 
+import java.util.Objects;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -7,66 +9,50 @@ public class Attrezzo {
 
 	@Id
 	@GeneratedValue(strategy =GenerationType.AUTO)
-	private Integer id;
-	private String nome;
-	private String postazione;
-	private boolean disponibile;
-	
+	private Long id;
+	private String name;
+	private String station;	
 	@ManyToOne
-	private Impiegato mec;
-	
-	public Attrezzo( String n, String pos) {
-		this.nome=n;
-		this.postazione=pos;
-		this.disponibile=true;
+	private Impiegato mechanic;
+	public Long getId() {
+		return id;
 	}
-	
-	
-	
-	
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public String getNome() {
-		return this.nome;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public String getName() {
+		return name;
 	}
-	public String getPostazione() {
-		return this.postazione;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public void setPostazione(String postazione) {
-		this.postazione = postazione;
+	public String getStation() {
+		return station;
 	}
-	public boolean isDisponibile() {
-		return disponibile;
+	public void setStation(String station) {
+		this.station = station;
 	}
-	public void setDisponibile(boolean disponibile) {
-		this.disponibile = disponibile;
+	public Impiegato getMechanic() {
+		return mechanic;
 	}
-	public Impiegato getMec() {
-		return mec;
+	public void setMechanic(Impiegato mechanic) {
+		this.mechanic = mechanic;
 	}
-	public void setMec(Impiegato mec) {
-		this.mec = mec;
-	}
-	public Integer getId() {
-		return this.id;
-	}
-	
-	
-	
 	@Override
 	public int hashCode() {
-		return this.getId();
+		return Objects.hash(id);
 	}
-	
-	
 	@Override
-	public boolean equals(Object o) {
-		Attrezzo that = (Attrezzo) o;
-		return this.getId()!=null  && this.getId()==that.getId();
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Attrezzo other = (Attrezzo) obj;
+		return Objects.equals(id, other.id);
 	}
-	
 	
 	
 	

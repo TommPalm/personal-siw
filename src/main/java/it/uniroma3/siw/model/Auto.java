@@ -7,66 +7,77 @@ import jakarta.persistence.*;
 public class Auto {
 
 	@Id
+	@GeneratedValue(strategy =GenerationType.AUTO)
+	private Long id;
 	@Column(unique=true)
-	private String targa;
-	private String paese; //paese immatricolazione
-	private String modello;
+	private String plate;
+	private String country; //paese immatricolazione
+	private String model;
 	
-	@OneToMany
-	private List<Task> lavori;
+	@OneToMany(mappedBy="auto")
+	private List<Ticket> tickets;
+	@ManyToOne
+	private Impiegato mechanics;
+	@ManyToOne
+	private Cliente owner;
 	
-	public Auto(String t, String p, String m) {
-		this.targa=t;
-		this.paese=p;
-		this.modello=m;
-		this.lavori = new ArrayList<Task>();
+	public Long getId() {
+		return id;
 	}
-	
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public void setTarga(String t) {
-		this.targa=t;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public void setModello(String m) {
-		this.modello=m;
+	public String getPlate() {
+		return plate;
 	}
-	public void setPaese(String p) {
-		this.paese=p;
+	public void setPlate(String plate) {
+		this.plate = plate;
 	}
-	public String getTarga() {
-		return this.targa;
+	public String getCountry() {
+		return country;
 	}
-	public String getModello() {
-		return this.modello;
+	public void setCountry(String country) {
+		this.country = country;
 	}
-	public String getPaese() {
-		return this.paese;
+	public String getModel() {
+		return model;
 	}
-	
-	public void addTask(Task t) {
-		this.lavori.add(t);
+	public void setModel(String model) {
+		this.model = model;
 	}
-	public List<Task> getLavori(){
-		return this.lavori;
+	public List<Ticket> getTickets() {
+		return tickets;
 	}
-	
-	
-	@Override
-	public boolean equals(Object o) {
-		Auto that = (Auto) o;
-		return this.getTarga().equals(that.getTarga()) && this.getPaese().equals(that.getPaese());
+	public void setTickets(List<Ticket> tickets) {
+		this.tickets = tickets;
 	}
-	
+	public Impiegato getMechanics() {
+		return mechanics;
+	}
+	public void setMechanics(Impiegato mechanics) {
+		this.mechanics = mechanics;
+	}
+	public Cliente getOwner() {
+		return owner;
+	}
+	public void setOwner(Cliente owner) {
+		this.owner = owner;
+	}
 	@Override
 	public int hashCode() {
-		return this.getTarga().hashCode()*33 + this.getPaese().hashCode()*31;
+		return Objects.hash(id);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Auto other = (Auto) obj;
+		return Objects.equals(id, other.id);
+	}
+
 	
 }

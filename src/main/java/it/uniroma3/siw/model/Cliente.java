@@ -8,62 +8,47 @@ public class Cliente {
 
 	@Id
 	@GeneratedValue(strategy =GenerationType.AUTO)
-	private Integer id;
-	@Column(unique=true)
-	private String username;
-	private String password;
-	
-	@OneToMany
+	private Long id;
+	@OneToMany(mappedBy="owner")
 	private List<Auto> auto;
-	
-	public Cliente(String user, String pass) {
-		this.username=user;
-		this.password=pass;
-		this.auto = new ArrayList<Auto>();
-	}
-	
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public void setUsername(String u) {
-		this.username=u;
-	}
-	public String getUsername() {
-		return this.username;
-	}
-	public void setPassword(String p) {
-		this.password=p;
-	}
-	public String getPassword() {
-		return this.password;
-	}
-	public Integer getId() {
-		return this.id;
-	}
-	
-	public void addAuto(Auto a) {
-		this.auto.add(a);
-	}
-	public List<Auto> getAuto(){
-		return this.auto;
-	}
+	@OneToOne(cascade = CascadeType.ALL)
+	private Credenziali credentials;
 	
 	
-	@Override
-	public boolean equals(Object o) {
-		Cliente that = (Cliente) o;
-		return this.getId()!=null && this.getId()==that.getId();
-	}
 	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public List<Auto> getAuto() {
+		return auto;
+	}
+	public void setAuto(List<Auto> auto) {
+		this.auto = auto;
+	}
+	public Credenziali getCredentials() {
+		return credentials;
+	}
+	public void setCredentials(Credenziali credentials) {
+		this.credentials = credentials;
+	}
 	@Override
 	public int hashCode() {
-		return this.getId();
+		return Objects.hash(id);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		return Objects.equals(id, other.id);
+	}
+
 	
 }

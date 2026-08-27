@@ -1,5 +1,7 @@
 package it.uniroma3.siw.model;
 
+import java.util.Objects;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -7,62 +9,61 @@ public class Ricambio {
 
 	@Id
 	@GeneratedValue(strategy =GenerationType.AUTO)
-	private Integer id;
+	private Long id;
 	@Column(nullable=false,unique=true)
-	private String nome;
-	private String produttore;
-	@Column(nullable=false)
-	private int quanto;
+	private String name;
+	private String producer;
 	
-	public Ricambio(String n, String p,int q) {
-		this.nome=n;
-		this.produttore=p;
-		this.quanto=q;
+	@ManyToOne
+	private Ticket ticket;
+
+	public Long getId() {
+		return id;
 	}
 
-	
-	
-	
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public String getNome() {
-		return nome;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+
+	public String getName() {
+		return name;
 	}
-	public String getProduttore() {
-		return produttore;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public void setProduttore(String produttore) {
-		this.produttore = produttore;
+
+	public String getProducer() {
+		return producer;
 	}
-	public int getQuanto() {
-		return quanto;
+
+	public void setProducer(String producer) {
+		this.producer = producer;
 	}
-	public void setQuanto(int quanto) {
-		this.quanto = quanto;
+
+	public Ticket getTicket() {
+		return ticket;
 	}
-	public Integer getId() {
-		return this.id;
+
+	public void setTicket(Ticket ticket) {
+		this.ticket = ticket;
 	}
-	
-	
-	
-	
+
 	@Override
 	public int hashCode() {
-		return this.getId();
+		return Objects.hash(id);
 	}
-	
-	
+
 	@Override
-	public boolean equals(Object o) {
-		Ricambio that = (Ricambio) o;
-		return this.getId()!=null  && this.getId()==that.getId();
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ricambio other = (Ricambio) obj;
+		return Objects.equals(id, other.id);
 	}
-	
-	
-	
-	
 	
 }
