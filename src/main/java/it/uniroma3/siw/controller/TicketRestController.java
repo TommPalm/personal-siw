@@ -15,7 +15,7 @@ public class TicketRestController {
 	}
 
 	
-	@GetMapping("api/cars/{id}/tickets")
+	@GetMapping("/api/cars/{id}/tickets")
 	public ResponseEntity<TicketsPageDTO> getTickets(
 			@PathVariable Long id) {
 

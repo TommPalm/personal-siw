@@ -66,7 +66,8 @@ public class SecurityConfig {
                     "/login",
                     "/register",
                     "/css/**",
-                    "/images/**"
+                    "/images/**",
+                    "/api/cars/**"
             ).permitAll();
 
             authorize.requestMatchers("/admin")
