@@ -3,26 +3,29 @@ package it.uniroma3.siw.model;
 import java.util.Objects;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
+@Entity
 public class Credenziali {
 
 	@Id
 	@GeneratedValue(strategy =GenerationType.AUTO)
 	private Long id;
-	@Column(unique=true)
-	private int phoneNumber;
+	@NotBlank
 	@Column(unique=true)
 	private String username;
+	@NotBlank
 	private String password;
-	@Enumerated(EnumType.STRING)
-	private Ruolo role;
+	private String user_role;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Utente user;
 	
 	
-	public int getPhoneNumber() {
-		return phoneNumber;
+	public Utente getUser() {
+		return user;
 	}
-	public void setPhoneNumber(int phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setUser(Utente user) {
+		this.user = user;
 	}
 	public Long getId() {
 		return id;
@@ -42,16 +45,15 @@ public class Credenziali {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Ruolo getRole() {
-		return role;
+	public String getRole() {
+		return user_role;
 	}
-	public void setRole(Ruolo role) {
-		this.role = role;
+	public void setRole(String role) {
+		this.user_role = role;
 	}
-	
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, password, username);
+		return Objects.hash(id);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -62,9 +64,10 @@ public class Credenziali {
 		if (getClass() != obj.getClass())
 			return false;
 		Credenziali other = (Credenziali) obj;
-		return Objects.equals(id, other.id) && Objects.equals(password, other.password)
-				&& Objects.equals(username, other.username);
+		return Objects.equals(id, other.id);
 	}
+	
+	
 	
 	
 }

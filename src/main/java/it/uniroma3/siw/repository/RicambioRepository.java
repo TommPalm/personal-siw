@@ -6,6 +6,11 @@ import java.util.*;
 
 public interface RicambioRepository extends JpaRepository<Ricambio, Long> {
 
-	List<Ricambio> findByName(String name);
-	List<Ricambio> findByProducerOrderByName(String producer);
+	boolean existsByNome(String nome);
+	boolean existsByProducer(String producer);
+
+	List<Ricambio> findByNome(String nome);
+	List<Ricambio> findByProducerOrderByNome(String producer);
+	
+	Ricambio findByNomeAndProducer(String nome, String producer);
 }

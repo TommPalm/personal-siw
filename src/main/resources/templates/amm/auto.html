@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Modifica auto</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+
+<body>
+
+<div id="titolo">
+    <img th:src="@{/images/titleBackground.jpg}" id="sfondoTitolo"/>
+    <strong id="pageName">MODIFICA AUTO</strong>
+</div>
+
+<p th:if="${error}" th:text="${error}" class="error"></p>
+
+
+<div class="card">
+
+    <form th:action="@{/auto}" method="POST">
+
+        <div>
+            <strong class="sottotitolo">Aggiungi auto</strong>
+        </div>
+
+        <div>
+            <label for="plate">Targa</label>
+            <input type="text"
+                   id="plate"
+                   required
+                   th:field="${automobile.plate}"/>
+
+            <span th:if="${#fields.hasErrors('automobile.plate')}"
+                  th:errors="${automobile.plate}"
+                  style="color: red;">
+            </span>
+        </div>
+
+        <div>
+            <label for="model">Modello</label>
+            <input type="text"
+                   id="model"
+                   required
+                   th:field="${automobile.model}"/>
+
+            <span th:if="${#fields.hasErrors('automobile.model')}"
+                  th:errors="${automobile.model}"
+                  style="color: red;">
+            </span>
+        </div>
+
+        <div>
+            <label for="country">Paese immatricolazione</label>
+            <input type="text"
+                   id="country"
+                   required
+                   th:field="${automobile.country}"/>
+
+            <span th:if="${#fields.hasErrors('automobile.country')}"
+                  th:errors="${automobile.country}"
+                  style="color: red;">
+            </span>
+        </div>
+
+        <div>
+            <label for="userId">Proprietario</label>
+
+            <select id="userId" name="userId" required>
+
+                <option value="">
+                    -- Seleziona proprietario --
+                </option>
+
+                <option th:each="user : ${users}"
+                        th:value="${user.id}"
+                        th:text="${user.id + ' - ' + user.nome + ' ' + user.surname}">
+                </option>
+
+            </select>
+        </div>
+
+        <div class="form-actions">
+
+            <button type="submit"
+                    class="btn btn-primary"
+                    style="width: 50%;">
+                Conferma
+            </button>
+
+            <a th:href="@{/admin}"
+               class="btn btn-secondary">
+                Annulla
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<div class="card">
+
+    <form th:action="@{/autoRem}" method="POST">
+
+        <div>
+            <strong class="sottotitolo">
+                Elimina auto
+            </strong>
+        </div>
+
+        <div>
+            <label for="autoId">
+                Auto
+            </label>
+
+            <select id="autoId"
+                    name="autoId"
+                    required>
+
+                <option value="">
+                    -- Seleziona auto --
+                </option>
+
+                <option th:each="car : ${auto}"
+                        th:value="${car.id}"
+                        th:text="${car.id + ' - ' + car.plate + ' - ' + car.model}">
+                </option>
+
+            </select>
+        </div>
+
+        <div class="form-actions">
+
+            <button type="submit"
+                    class="btn btn-primary"
+                    style="width: 50%;">
+                Elimina
+            </button>
+
+            <a th:href="@{/admin}"
+               id="login">
+                Back
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>

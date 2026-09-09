@@ -10,12 +10,19 @@ public class Ricambio {
 	@Id
 	@GeneratedValue(strategy =GenerationType.AUTO)
 	private Long id;
-	@Column(nullable=false,unique=true)
-	private String name;
+	@Column(nullable=false)
+	private String nome;
 	private String producer;
+	private int quantity;
+
 	
-	@ManyToOne
-	private Ticket ticket;
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 
 	public Long getId() {
 		return id;
@@ -25,12 +32,12 @@ public class Ricambio {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String name) {
+		this.nome = name;
 	}
 
 	public String getProducer() {
@@ -39,14 +46,6 @@ public class Ricambio {
 
 	public void setProducer(String producer) {
 		this.producer = producer;
-	}
-
-	public Ticket getTicket() {
-		return ticket;
-	}
-
-	public void setTicket(Ticket ticket) {
-		this.ticket = ticket;
 	}
 
 	@Override

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>car tickets</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div id="titolo">
+	<img th:src="@{/images/titleBackground.jpg}" id="sfondoTitolo"/>
+	<strong id="pageName">🚗DOTTOR VEICOLO: TICKETS🩺</strong>
+</div>
+
+<div class="sottotitolo">
+	<h1>Tickets associati a: </h1>
+	<span th:text="${car.model}"></span>
+	<span th:text="'['+${car.plate}+']'"></span>
+
+</div>
+<p th:if="${#lists.isEmpty(tickets)}">Spiacenti, non risultano ticket aperti per questa vettura nei nostri registri</p>
+
+<ul>
+    <li th:each="ticket : ${tickets}">
+		<strong> Operazione: </strong>
+		<span th:text="${ticket.description}"></span>
+		<strong> Stato: </strong>
+		<span th:text="${ticket.state}"></span>
+		<strong> Tempo stimato: </strong>
+		<span th:text="${ticket.estimatedTime}"></span>
+		<strong> Costo: </strong>
+		<span th:text="${#numbers.formatDecimal(ticket.cost, 1, 2)}"></span>
+    </li>
+</ul>
+
+<a th:href="@{/personal}" id="login">area personale</a>
+
+</body>
+</html>

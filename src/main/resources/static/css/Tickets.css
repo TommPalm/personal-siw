@@ -1,0 +1,119 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Header */
+
+#titolo {
+    position: relative;
+    display: inline-block;
+}
+
+#sfondoTitolo {
+    display: block;
+    width: 1350px;
+    height: 250px;
+    opacity: 60%;
+    border: solid black;
+}
+
+#pageName {
+    position: absolute;
+    top: 60%;
+    right: 10%;
+    font-size: 40px;
+    color: #3e1570;
+    border: solid red;
+    background-color: white;
+}
+
+/* Page title */
+
+.sottotitolo {
+    font-size: 25px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.sottotitolo h1 {
+    margin-bottom: 10px;
+}
+
+.car-info {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #3e1570;
+}
+
+/* Tickets */
+
+ul {
+    list-style: none;
+    padding: 0;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+li {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 10px;
+
+    font-size: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+
+    background-color: rgb(128, 128, 255);
+
+    border-radius: 10px;
+    border: 1px solid brown;
+
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+li strong {
+    margin-left: 0;
+}
+
+li span {
+    color: white;
+}
+
+/* Personal area */
+
+#login {
+    position: absolute;
+    font-size: 18px;
+    top: 10%;
+    left: 83%;
+
+    border: solid red;
+    background-color: white;
+    border-radius: 80px;
+
+    padding: 5px;
+
+    color: black;
+    text-decoration: none;
+}
+
+#login:hover {
+    color: red;
+}
+
+/* Error */
+
+.error {
+    color: red;
+    text-align: center;
+    font-size: 20px;
+}

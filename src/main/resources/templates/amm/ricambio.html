@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Modifica auto</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+
+<body>
+
+<div id="titolo">
+    <img th:src="@{/images/titleBackground.jpg}" id="sfondoTitolo"/>
+    <strong id="pageName">MODIFICA RICAMBIO</strong>
+</div>
+<p th:if="${error}" th:text="${error}" class="error"></p>
+
+<div class="card">
+        <form th:action="@{/ricambio}" method="POST">
+
+			<div>
+			    <label>Nome</label>
+			    <input type="text" required th:field="${ricambio.nome}"/>
+			    <span th:if="${#fields.hasErrors('ricambio.nome')}"
+			          th:errors="${ricambio.nome}" style="color: red;"></span>
+			</div>
+			<div>
+				<label>Produttore</label>
+				<input type="text" required th:field="${ricambio.producer}"/>
+				<span th:if="${#fields.hasErrors('ricambio.producer')}"
+					  th:errors="${ricambio.producer}" style="color: red;"></span>
+			</div>
+			<div>
+				<label>Quantità</label>
+				<input type="text" required th:field="${ricambio.quantity}"/>
+				<span th:if="${#fields.hasErrors('ricambio.quantity')}"
+					  th:errors="${ricambio.quantity}" style="color: red;"></span>
+			</div>
+		
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" style="width: 50%;">Conferma </button>
+				<a th:href="@{/admin}" class="btn btn-secondary"> Annulla</a>
+            </div>
+			
+
+        </form>
+    </div>
+	
+	
+	<div class="card">
+	    <form th:action="@{/ricambioRem}" method="POST">
+
+	        <div>
+	            <strong class="sottotitolo">Elimina dal magazzino</strong>
+	        </div>
+
+	        <div>
+	            <label for="ricambioId">Ricambio</label>
+
+	            <select id="ricambioId" name="ricambioId" required>
+	                <option value="">-- Seleziona ricambio --</option>
+
+	                <option th:each="ric : ${ric}"
+	                        th:value="${ric.id}"
+	                        th:text="${ric.id}">
+	                </option>
+	            </select>
+	        </div>
+
+	        <div class="form-actions">
+	            <button type="submit" class="btn btn-primary" style="width: 50%;">
+	                Conferma
+	            </button>
+
+	            <a th:href="@{/admin}" id="login">
+	                Back
+	            </a>
+	        </div>
+
+	    </form>
+	</div>
+
+	</body>
+	</html>

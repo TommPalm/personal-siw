@@ -1,6 +1,5 @@
 package it.uniroma3.siw.model;
 
-import java.time.*;
 import jakarta.persistence.*;
 import java.util.*;
 
@@ -12,17 +11,22 @@ public class Ticket {
 	private Long id;
 	@Column(length=2000)
 	private String description;
-	@Enumerated(EnumType.STRING)
-	private Stato state; 
-	private LocalDate endDate;  //y-m-d
-	private LocalDate startDate;
+	private String state; //WIP, COMPLETED
+	private String estimatedTime;
 	private float cost;
 	
 
 	@ManyToOne 
-	private Auto auto;
-	@OneToMany(mappedBy="ticket")
-	private List<Ricambio> parts;
+	private Automobile car;
+	
+	
+	
+	public String getEstimatedTime() {
+		return estimatedTime;
+	}
+	public void setEstimatedTime(String estimatedTime) {
+		this.estimatedTime = estimatedTime;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -35,23 +39,11 @@ public class Ticket {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Stato getState() {
+	public String getState() {
 		return state;
 	}
-	public void setState(Stato state) {
+	public void setState(String state) {
 		this.state = state;
-	}
-	public LocalDate getEndDate() {
-		return endDate;
-	}
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
-	}
-	public LocalDate getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
 	}
 	public float getCost() {
 		return cost;
@@ -59,17 +51,11 @@ public class Ticket {
 	public void setCost(float cost) {
 		this.cost = cost;
 	}
-	public Auto getAuto() {
-		return auto;
+	public Automobile getCar() {
+		return car;
 	}
-	public void setAuto(Auto auto) {
-		this.auto = auto;
-	}
-	public List<Ricambio> getParts() {
-		return parts;
-	}
-	public void setParts(List<Ricambio> parts) {
-		this.parts = parts;
+	public void setCar(Automobile car) {
+		this.car = car;
 	}
 	@Override
 	public int hashCode() {

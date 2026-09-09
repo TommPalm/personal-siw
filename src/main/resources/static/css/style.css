@@ -1,0 +1,161 @@
+#titolo {
+position: relative;
+display: inline-block;
+}
+
+#sfondoTitolo {
+display: block;
+width: 1350px;
+height: 250px;
+opacity: 60%;
+border: solid black;
+}
+
+#services {
+display: flex;
+gap: 250px;
+}
+
+#otherServices{
+display: flex;
+gap: 250px;
+}
+
+#contatti{
+display: flex;
+gap: 250px;
+background-color: purple;
+}
+
+#contatti{
+color: white;
+}
+
+#contatti1{
+color: black;
+}
+
+#leftImg{
+display: block;
+width: 500px;
+height: 350px;
+opacity: 90%;
+border: solid red;
+}
+
+#rightImg{
+display: block;
+width: 500px;
+height: 350px;
+opacity: 90%;
+border: solid red;
+}
+
+#pageName {
+position: absolute;
+top: 60%;
+right: 60%;
+font-size: 40px;
+color: #3e1570;
+border: solid red;
+background-color: white;
+}
+
+#login{
+position: absolute;
+font-size: 18px;
+top: 10%;
+left: 83%;
+border: solid red;
+background-color: white;
+border-radius: 80px;
+padding: 5px;
+}
+
+#register{
+position: absolute;
+font-size: 18px;
+top: 10%;
+left: 92%;
+border: solid red;
+background-color: white;
+border-radius: 80px;
+padding: 5px;
+}
+
+a:hover{
+color: red;
+}
+
+#linea{
+background-color: rgb(0, 0, 160);
+color: rgb(0, 0, 160);
+font-size: 5px;
+height: 10px;
+}
+
+.sottotitolo{
+font-size: 35px;
+}
+.scritta{
+font-size: 25px;
+}
+
+.less{
+color: darkcyan;
+}
+
+.mod{
+font-size: 18px;
+border: solid red;
+background-color: rgb(128, 128, 255);
+border-radius: 80px;
+padding: 5px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+li {
+    font-size: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    background-color: rgb(0, 0, 255);
+    border-radius: 10px;
+    border: 1px solid #ccc;
+	border-color: brown;
+}
+
+li strong {
+    margin-left: 15px;
+}
+
+li a {
+    display: block;
+    margin-top: 15px;
+    font-size: 18px;
+	color: red;
+}
+.form-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-top: 1rem;
+}
+.btn {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 0.5px solid rgba(0,0,0,0.15);
+    background: transparent;
+    color: #1a1a1a;
+    transition: background-color 0.15s, transform 0.1s;
+    text-decoration: none;
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>admin page</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+
+<body>
+<div id="titolo">
+	<img th:src="@{/images/titleBackground.jpg}" id="sfondoTitolo"/>
+	<strong id="pageName">ADMIN MENU</strong>
+</div>
+
+<a th:href="@{/}" id="register">home</a>
+
+<div>
+	<h1 class="sottotitolo"> UTENTI: </h1>
+	<h1 th:each="user : ${users}">
+		<strong>ID </strong>
+		<span class="less" th:text="${user.id}"></span>
+		<strong>NAME </strong>
+		<span class="less" th:text="${user.nome}"></span>
+		<strong>SURNAME </strong>
+		<span class="less" th:text="${user.surname}"></span>
+		<strong>CELLPHONE </strong>
+		<span class="less" th:text="${user.cellphone}"></span>	
+	</h1>
+</div>
+
+<div>
+	<h1 class="sottotitolo"> VETTURE: </h1>
+	<h1 th:each="car : ${auto}">
+		<strong>ID </strong>
+		<span class="less" th:text="${car.id}"></span>
+		<strong>TARGA </strong>
+		<span class="less" th:text="${car.plate}"></span>
+		<strong>MODELLO </strong>
+		<span class="less" th:text="${car.model}"></span>
+		<strong>PAESE IMM. </strong>
+		<span class="less" th:text="${car.country}"></span>
+		<strong>ID UTENTE </strong>
+		<span class="less" th:text="${car.owner.id}"></span>	
+	</h1>
+</div>
+<div>
+	<a th:href="@{/amm/auto}"  class="mod">modifica auto</a>
+</div>
+
+<div>
+	<h1 class="sottotitolo"> TICKET: </h1>
+	<h1 th:each="ticket : ${tickets}">
+		<strong>ID </strong>
+		<span class="less" th:text="${ticket.id}"></span>
+		<strong>DESCRIZIONE </strong>
+		<span class="less" th:text="${ticket.description}"></span>
+		<strong>STATO </strong>
+		<span class="less" th:text="${ticket.state}"></span>
+		<strong>TEMPO STIMATO </strong>
+		<span class="less" th:text="${ticket.estimatedTime}"></span>
+		<strong>COSTO </strong>
+		<span class="less" th:text="${ticket.cost}"></span>
+		<strong>ID AUTO </strong>
+		<span class="less" th:text="${ticket.car.id}"></span>
+	</h1>
+</div>
+<div>
+	<a th:href="@{/amm/ticket}"  class="mod">modifica ticket</a>
+</div>
+
+<div>
+	<h1 class="sottotitolo"> RICAMBI: </h1>
+	<h1 th:each="ricambio : ${ricambi}">
+		<strong>ID </strong>
+		<span class="less" th:text="${ricambio.id}"></span>
+		<strong>NOME </strong>
+		<span class="less" th:text="${ricambio.nome}"></span>
+		<strong>PRODUTTORE </strong>
+		<span class="less" th:text="${ricambio.producer}"></span>
+		<strong>IN MAGAZZINO </strong>
+		<span class="less" th:text="${ricambio.quantity}"></span>
+	</h1>
+</div>
+<div>
+	<a th:href="@{/amm/ricambio}"  class="mod">modifica ricambi</a>
+</div>
+</body>
+</html>
