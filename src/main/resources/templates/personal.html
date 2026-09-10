@@ -1,46 +1,86 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
-    <title>area personale</title>
-	<link rel="stylesheet" th:href="@{/css/style.css}"/>
-	<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-	<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-	<script src="https://unpkg.com/@babel/standalone@7.23.10/babel.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Area personale</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.23.10/babel.min.js"></script>
 </head>
+
 <body>
-<div id="titolo">
-	<img th:src="@{/images/titleBackground.jpg}" id="sfondoTitolo"/>
-	<strong id="pageName">🚗DOTTOR VEICOLO: AREA PERSONALE🩺</strong>
-</div>
-	
-<a th:href="@{/}" id="register">home</a>
-<h1 class="sottotitolo">Le tue auto:</h1>
 
-<p th:if="${#lists.isEmpty(cars)}">Spiacenti, non ci sono auto a tuo nome nei nostri registri</p>
+<header id="titolo">
 
-<ul>
-    <li th:each="car : ${cars}">
-		<strong> Modello: </strong>
-        <span th:text="${car.model}"></span>
-		<strong> Targa: </strong>
-        <span th:text="${car.plate}"></span>
-		<strong> Paese di immatricolazione: </strong>
-        <span th:text="${car.country}"></span>
-		<!-- link per la struttura senza react
-		<a th:href="@{/cars/{id}/tickets(id=${car.id})}">
-			vai ai ticket aperti per questa vettura
-		</a>-->
-		<!-- link per la struttura con react-->
-		<a th:href="@{/cars/{id}/tickets(id=${car.id})}">
-		    vai ai ticket aperti per questa vettura
-		</a>
+    <img
+        th:src="@{/images/titleBackground.jpg}"
+        id="sfondoTitolo"/>
+
+    <strong id="pageName">
+        🚗 DOTTOR VEICOLO: AREA PERSONALE 🩺
+    </strong>
+
+</header>
 
 
+<a th:href="@{/}" id="register">
+    Home
+</a>
 
-    </li>
-</ul>
+
+<main>
+
+    <h1 class="sottotitolo">
+        🚘 Le tue auto
+    </h1>
+
+
+    <div
+        th:if="${#lists.isEmpty(cars)}"
+        class="empty-message">
+
+        Spiacenti, non ci sono auto a tuo nome
+        nei nostri registri.
+
+    </div>
+
+
+    <ul>
+
+        <li th:each="car : ${cars}">
+
+            <strong>Modello</strong>
+            <span th:text="${car.model}"></span>
+
+
+            <strong>Targa</strong>
+            <span th:text="${car.plate}"></span>
+
+
+            <strong>Paese di immatricolazione</strong>
+            <span th:text="${car.country}"></span>
+
+
+            <strong></strong>
+
+            <span>
+                <a th:href="@{/cars/{id}/tickets(id=${car.id})}">
+                    🎫 Vai ai ticket aperti per questa vettura →
+                </a>
+            </span>
+
+        </li>
+
+    </ul>
+
+</main>
 
 </body>
 </html>

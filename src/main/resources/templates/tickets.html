@@ -3,10 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Tickets</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tickets - Dottor Veicolo</title>
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/Tickets.css}">
 
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -15,18 +16,40 @@
 
 <body>
 
-    <div id="root"></div>
+    <header id="titolo">
+
+        <img
+            th:src="@{/images/titleBackground.jpg}"
+            id="sfondoTitolo"/>
+
+        <strong id="pageName">
+            🎫 TICKET VETTURA
+        </strong>
+
+        <a th:href="@{/}" id="register">
+            Home
+        </a>
+
+    </header>
+
+
+    <main>
+
+        <div id="root"></div>
+
+    </main>
+
 
     <script th:inline="javascript">
         const carId = /*[[${carId}]]*/ 0;
     </script>
 
-	<script
-	    type="text/babel"
-	    th:src="@{/js/Tickets.jsx}"
-	    data-presets="react">
-	</script>
 
+    <script
+        type="text/babel"
+        th:src="@{/js/Tickets.jsx}"
+        data-presets="react">
+    </script>
 
 </body>
 

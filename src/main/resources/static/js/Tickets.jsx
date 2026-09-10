@@ -39,79 +39,180 @@ function Tickets() {
     }, []);
 
     if (loading) {
-        return <p>Caricamento...</p>;
+        return (
+            <div className="loading-card">
+                <div className="loading-icon">🔄</div>
+                <h2>Caricamento ticket...</h2>
+                <p>Attendi mentre recuperiamo le informazioni della vettura.</p>
+            </div>
+        );
     }
 
     if (error) {
-        return <p className="error">{error}</p>;
+        return (
+            <div className="empty-message">
+                <div style={{ fontSize: "40px" }}>⚠️</div>
+                <h2>Si è verificato un problema</h2>
+                <p className="error">{error}</p>
+                <a href="/personal" className="btn btn-primary">
+                    ← Torna all'area personale
+                </a>
+            </div>
+        );
     }
 
     return (
         <div className="tickets-page">
 
-            <div id="titolo">
+            <header id="titolo">
+
                 <img
                     src="/images/titleBackground.jpg"
                     id="sfondoTitolo"
-                    alt="Sfondo"
+                    alt="Sfondo officina"
                 />
 
                 <strong id="pageName">
                     🚗 DOTTOR VEICOLO: TICKETS 🩺
                 </strong>
-            </div>
 
-            <div className="sottotitolo">
+                <a href="/personal" id="login">
+                    Area personale
+                </a>
 
-                <h1>Tickets associati a:</h1>
+            </header>
 
-                {car && (
-                    <div className="car-info">
-                        <span>{car.model}</span>
-                        <span>[{car.plate}]</span>
+
+            <main>
+
+                <section className="ticket-car-header">
+
+                    <div className="sottotitolo">
+
+                        <h1>🎫 Ticket associati a</h1>
+
+                        {car && (
+                            <div className="car-info">
+                                <span>{car.model}</span>
+                                <span className="plate-badge">
+                                    {car.plate}
+                                </span>
+                            </div>
+                        )}
+
                     </div>
+
+                </section>
+
+
+                {tickets.length === 0 ? (
+
+                    <div className="empty-message">
+
+                        <div style={{ fontSize: "45px" }}>
+                            ✅
+                        </div>
+
+                        <h2>Nessun ticket aperto</h2>
+
+                        <p>
+                            Spiacenti, non risultano ticket aperti
+                            per questa vettura nei nostri registri.
+                        </p>
+
+                        <a
+                            href="/personal"
+                            className="btn btn-primary">
+                            ← Torna alle mie auto
+                        </a>
+
+                    </div>
+
+                ) : (
+
+                    <section className="ticket-list">
+
+                        {tickets.map((ticket) => (
+
+                            <article
+                                className="ticket-card"
+                                key={ticket.id}>
+
+                                <div className="ticket-header">
+
+                                    <span className="ticket-number">
+                                        Ticket #{ticket.id}
+                                    </span>
+
+                                    <span className="ticket-status">
+                                        {ticket.state}
+                                    </span>
+
+                                </div>
+
+
+                                <div className="ticket-body">
+
+                                    <div className="ticket-row">
+
+                                        <span className="ticket-label">
+                                            🔧 Operazione
+                                        </span>
+
+                                        <span className="ticket-value">
+                                            {ticket.description}
+                                        </span>
+
+                                    </div>
+
+
+                                    <div className="ticket-row">
+
+                                        <span className="ticket-label">
+                                            ⏱️ Tempo stimato
+                                        </span>
+
+                                        <span className="ticket-value">
+                                            {ticket.estimatedTime}
+                                        </span>
+
+                                    </div>
+
+
+                                    <div className="ticket-row">
+
+                                        <span className="ticket-label">
+                                            💰 Costo
+                                        </span>
+
+                                        <span className="ticket-cost">
+                                            € {Number(ticket.cost).toFixed(2)}
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </article>
+
+                        ))}
+
+                    </section>
+
                 )}
 
-            </div>
 
-            {tickets.length === 0 ? (
+                <div className="ticket-back">
 
-                <p>
-                    Spiacenti, non risultano ticket aperti
-                    per questa vettura nei nostri registri
-                </p>
+                    <a
+                        href="/personal"
+                        className="btn btn-primary">
+                        ← Torna all'area personale
+                    </a>
 
-            ) : (
+                </div>
 
-                <ul>
-                    {tickets.map((ticket) => (
-
-                        <li key={ticket.id}>
-
-                            <strong>Operazione:</strong>
-                            <span>{ticket.description}</span>
-
-                            <strong>Stato:</strong>
-                            <span>{ticket.state}</span>
-
-                            <strong>Tempo stimato:</strong>
-                            <span>{ticket.estimatedTime}</span>
-
-                            <strong>Costo:</strong>
-                            <span>
-                                {Number(ticket.cost).toFixed(2)}
-                            </span>
-
-                        </li>
-
-                    ))}
-                </ul>
-
-            )}
-
-            <a href="/personal" id="login">
-                Area personale
-            </a>
+            </main>
 
         </div>
     );

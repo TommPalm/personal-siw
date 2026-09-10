@@ -1,101 +1,273 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="it"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Modifica auto</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gestione Ticket - Dottor Veicolo</title>
+
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 
 <body>
 
-<div id="titolo">
-    <img th:src="@{/images/titleBackground.jpg}" id="sfondoTitolo"/>
-    <strong id="pageName">MODIFICA TICKET</strong>
-</div>
-<p th:if="${error}" th:text="${error}" class="error"></p>
+<header id="titolo">
 
-<div class="card">
+    <img
+        th:src="@{/images/titleBackground.jpg}"
+        id="sfondoTitolo"
+        alt="Sfondo officina"/>
+
+    <strong id="pageName">
+        🎫 MODIFICA TICKET
+    </strong>
+
+    <a th:href="@{/admin}" id="register">
+        Admin
+    </a>
+
+</header>
+
+
+<main class="management-page">
+
+    <p
+        th:if="${error}"
+        th:text="${error}"
+        class="error">
+    </p>
+
+
+    <!-- CREA TICKET -->
+
+    <section class="card management-card">
+
+        <div class="management-title">
+
+            <span class="management-icon">
+                🎫
+            </span>
+
+            <div>
+                <h1>Nuovo ticket</h1>
+                <p>
+                    Inserisci le informazioni relative
+                    all'intervento.
+                </p>
+            </div>
+
+        </div>
+
+
         <form th:action="@{/ticket}" method="POST">
 
-			<div>
-			    <label>Descrizione</label>
-			    <input type="text" required th:field="${ticket.description}"/>
-			    <span th:if="${#fields.hasErrors('ticket.description')}"
-			          th:errors="${ticket.description}" style="color: red;"></span>
-			</div>
-			<div>
-				<label>Stato</label>
-				<input type="text" required th:field="${ticket.state}"/>
-				<span th:if="${#fields.hasErrors('ticket.state')}"
-					  th:errors="${ticket.state}" style="color: red;"></span>
-			</div>
-			<div>
-				<label>Time</label>
-				<input type="text" required th:field="${ticket.estimatedTime}"/>
-				<span th:if="${#fields.hasErrors('ticket.estimatedTime')}"
-					  th:errors="${ticket.estimatedTime}" style="color: red;"></span>
-			</div>
-			<div>
-				<label>Cost</label>
-				<input type="number" required th:field="${ticket.cost}"/>
-				<span th:if="${#fields.hasErrors('ticket.cost')}"
-					  th:errors="${ticket.cost}" style="color: red;"></span>
-			</div>
-			<div>
-			    <label>Auto  id</label>
-			    <select name="carId" required>
-			        <option value="">-- Seleziona auto --</option>
+            <div>
 
-			        <option th:each="car : ${cars}"
-			                th:value="${car.id}"
-			                th:text="${car.id + ' - ' + car.plate + ' - ' + car.model}">
-			        </option>
-			    </select>
-			</div>
-		
+                <label for="description">
+                    Descrizione
+                </label>
+
+                <input
+                    type="text"
+                    id="description"
+                    required
+                    th:field="${ticket.description}"
+                    placeholder="Descrizione dell'intervento"/>
+
+                <span
+                    th:if="${#fields.hasErrors('ticket.description')}"
+                    th:errors="${ticket.description}"
+                    class="field-error">
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <label for="state">
+                    Stato
+                </label>
+
+                <input
+                    type="text"
+                    id="state"
+                    required
+                    th:field="${ticket.state}"
+                    placeholder="Es. Aperto"/>
+
+                <span
+                    th:if="${#fields.hasErrors('ticket.state')}"
+                    th:errors="${ticket.state}"
+                    class="field-error">
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <label for="estimatedTime">
+                    Tempo stimato
+                </label>
+
+                <input
+                    type="text"
+                    id="estimatedTime"
+                    required
+                    th:field="${ticket.estimatedTime}"
+                    placeholder="Es. 2 ore"/>
+
+                <span
+                    th:if="${#fields.hasErrors('ticket.estimatedTime')}"
+                    th:errors="${ticket.estimatedTime}"
+                    class="field-error">
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <label for="cost">
+                    Costo (€)
+                </label>
+
+                <input
+                    type="number"
+                    id="cost"
+                    required
+                    step="0.01"
+                    th:field="${ticket.cost}"
+                    placeholder="0.00"/>
+
+                <span
+                    th:if="${#fields.hasErrors('ticket.cost')}"
+                    th:errors="${ticket.cost}"
+                    class="field-error">
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <label for="carId">
+                    🚗 Auto
+                </label>
+
+                <select
+                    id="carId"
+                    name="carId"
+                    required>
+
+                    <option value="">
+                        -- Seleziona auto --
+                    </option>
+
+                    <option
+                        th:each="car : ${cars}"
+                        th:value="${car.id}"
+                        th:text="${car.id + ' - ' + car.plate + ' - ' + car.model}">
+                    </option>
+
+                </select>
+
+            </div>
+
 
             <div class="form-actions">
-                <button type="submit" class="btn btn-primary" style="width: 50%;">Conferma </button>
-				<a th:href="@{/admin}" class="btn btn-secondary"> Annulla</a>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+                    ✓ Conferma
+                </button>
+
+                <a
+                    th:href="@{/admin}"
+                    class="btn">
+                    Annulla
+                </a>
+
             </div>
-			
 
         </form>
-    </div>
-	
-	
-	<div class="card">
-	    <form th:action="@{/ticketRem}" method="POST">
 
-	        <div>
-	            <strong class="sottotitolo">Elimina ticket</strong>
-	        </div>
+    </section>
 
-	        <div>
-	            <label for="ticketId">Ticket</label>
 
-	            <select id="ticketId" name="ticketId" required>
-	                <option value="">-- Seleziona ticket --</option>
+    <!-- ELIMINA TICKET -->
 
-	                <option th:each="tik : ${tiks}"
-	                        th:value="${tik.id}"
-	                        th:text="${tik.id}">
-	                </option>
-	            </select>
-	        </div>
+    <section class="card management-card danger-card">
 
-	        <div class="form-actions">
-	            <button type="submit" class="btn btn-primary" style="width: 50%;">
-	                Conferma
-	            </button>
+        <div class="management-title">
 
-	            <a th:href="@{/admin}" id="login">
-	                Back
-	            </a>
-	        </div>
+            <span class="management-icon">
+                🗑️
+            </span>
 
-	    </form>
-	</div>
+            <div>
+                <h1>Elimina ticket</h1>
+                <p>
+                    Seleziona il ticket che vuoi rimuovere.
+                </p>
+            </div>
 
-	</body>
-	</html>
+        </div>
+
+
+        <form th:action="@{/ticketRem}" method="POST">
+
+            <div>
+
+                <label for="ticketId">
+                    Ticket
+                </label>
+
+                <select
+                    id="ticketId"
+                    name="ticketId"
+                    required>
+
+                    <option value="">
+                        -- Seleziona ticket --
+                    </option>
+
+                    <option
+                        th:each="tik : ${tiks}"
+                        th:value="${tik.id}"
+                        th:text="${tik.id}">
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="btn btn-danger">
+                    🗑 Elimina
+                </button>
+
+                <a
+                    th:href="@{/admin}"
+                    class="btn">
+                    ← Indietro
+                </a>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</main>
+
+</body>
+</html>

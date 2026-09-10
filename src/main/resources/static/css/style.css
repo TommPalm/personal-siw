@@ -1,161 +1,1176 @@
+/* =========================================================
+   DOTTOR VEICOLO - MAIN STYLE
+   Modern automotive / garage theme
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #3e1570;
+    --primary-light: #6c35a8;
+    --secondary: #15152b;
+    --accent: #635bff;
+    --danger: #e63946;
+    --success: #2a9d8f;
+    --background: #f3f4f8;
+    --card: #ffffff;
+    --text: #22223b;
+    --muted: #6b7280;
+    --border: #e3e5eb;
+    --shadow: 0 10px 30px rgba(30, 20, 60, 0.10);
+    --shadow-hover: 0 15px 35px rgba(30, 20, 60, 0.18);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
 #titolo {
-position: relative;
-display: inline-block;
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    background: var(--secondary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.18);
 }
 
 #sfondoTitolo {
-display: block;
-width: 1350px;
-height: 250px;
-opacity: 60%;
-border: solid black;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.42;
+    border: none;
 }
 
-#services {
-display: flex;
-gap: 250px;
-}
-
-#otherServices{
-display: flex;
-gap: 250px;
-}
-
-#contatti{
-display: flex;
-gap: 250px;
-background-color: purple;
-}
-
-#contatti{
-color: white;
-}
-
-#contatti1{
-color: black;
-}
-
-#leftImg{
-display: block;
-width: 500px;
-height: 350px;
-opacity: 90%;
-border: solid red;
-}
-
-#rightImg{
-display: block;
-width: 500px;
-height: 350px;
-opacity: 90%;
-border: solid red;
+/* Dark overlay over the header image */
+#titolo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(15, 15, 35, 0.90),
+        rgba(62, 21, 112, 0.55),
+        rgba(15, 15, 35, 0.30)
+    );
+    pointer-events: none;
 }
 
 #pageName {
-position: absolute;
-top: 60%;
-right: 60%;
-font-size: 40px;
-color: #3e1570;
-border: solid red;
-background-color: white;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 7%;
+    transform: translateY(-50%);
+
+    margin: 0;
+    padding: 12px 22px;
+
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 800;
+    letter-spacing: 1px;
+
+    color: white;
+    background: transparent;
+    border: none;
+
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
 }
 
-#login{
-position: absolute;
-font-size: 18px;
-top: 10%;
-left: 83%;
-border: solid red;
-background-color: white;
-border-radius: 80px;
-padding: 5px;
+
+/* =========================================================
+   HEADER NAVIGATION
+   ========================================================= */
+
+#login,
+#register {
+    position: absolute;
+    z-index: 3;
+
+    top: 25px;
+    left: auto;
+
+    display: inline-block;
+
+    padding: 10px 18px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    color: white;
+    text-decoration: none;
+
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 25px;
+
+    backdrop-filter: blur(8px);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        color 0.2s ease;
 }
 
-#register{
-position: absolute;
-font-size: 18px;
-top: 10%;
-left: 92%;
-border: solid red;
-background-color: white;
-border-radius: 80px;
-padding: 5px;
+#login {
+    right: 145px;
 }
 
-a:hover{
-color: red;
+#register {
+    right: 25px;
 }
 
-#linea{
-background-color: rgb(0, 0, 160);
-color: rgb(0, 0, 160);
-font-size: 5px;
-height: 10px;
+#login:hover,
+#register:hover {
+    color: white;
+    background: var(--primary-light);
+    transform: translateY(-2px);
 }
 
-.sottotitolo{
-font-size: 35px;
-}
-.scritta{
-font-size: 25px;
+
+/* =========================================================
+   GENERAL LINKS
+   ========================================================= */
+
+a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
 }
 
-.less{
-color: darkcyan;
+a:hover {
+    color: var(--accent);
 }
 
-.mod{
-font-size: 18px;
-border: solid red;
-background-color: rgb(128, 128, 255);
-border-radius: 80px;
-padding: 5px;
+
+/* =========================================================
+   HOME - SERVICES
+   ========================================================= */
+
+#services {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 35px;
+
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 25px;
 }
+
+#services > div {
+    background: var(--card);
+    border-radius: 18px;
+    padding: 25px;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+#services > div:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+#services .sottotitolo {
+    display: block;
+    margin: 0 0 18px;
+    font-size: 27px;
+    color: var(--primary);
+}
+
+#leftImg,
+#rightImg {
+    display: block;
+
+    width: 100%;
+    height: 280px;
+
+    object-fit: cover;
+
+    opacity: 1;
+
+    border: none;
+    border-radius: 14px;
+
+    margin-bottom: 20px;
+}
+
+#leftImg {
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.16);
+}
+
+#rightImg {
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.16);
+}
+
+
+/* =========================================================
+   TITLES / TEXT
+   ========================================================= */
+
+.sottotitolo {
+    font-size: 28px;
+    text-align: center;
+
+    margin: 35px 0 20px;
+
+    color: var(--primary);
+}
+
+.sottotitolo h1 {
+    margin-bottom: 10px;
+}
+
+.scritta {
+    font-size: 18px;
+    font-weight: 500;
+
+    margin: 12px 0;
+
+    color: var(--text);
+}
+
+
+/* =========================================================
+   OTHER SERVICES
+   ========================================================= */
+
+#otherServices {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px;
+
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 25px;
+}
+
+#otherServices > div {
+    background: white;
+
+    padding: 25px 30px;
+
+    border-left: 5px solid var(--primary);
+    border-radius: 12px;
+
+    box-shadow: var(--shadow);
+}
+
+#otherServices .scritta {
+    padding: 5px 0;
+}
+
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+#linea {
+    width: 100%;
+    height: 5px;
+
+    margin: 50px 0;
+
+    padding: 0;
+
+    background: linear-gradient(
+        90deg,
+        var(--primary),
+        var(--accent),
+        var(--primary)
+    );
+
+    color: transparent;
+
+    border: none;
+}
+
+
+/* =========================================================
+   CONTACTS / FOOTER
+   ========================================================= */
+
+#contatti {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+
+    margin-top: 60px;
+    padding: 45px max(25px, calc((100% - 1100px) / 2));
+
+    background: linear-gradient(
+        135deg,
+        #17172e,
+        #3e1570
+    );
+
+    color: white;
+}
+
+#contatti > div {
+    min-width: 0;
+}
+
+#contatti h2 {
+    margin: 10px 0;
+    color: white;
+    font-size: 18px;
+}
+
+#contatti1 {
+    margin: 0 0 18px;
+
+    color: white;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ADMIN / PERSONAL DATA
+   ========================================================= */
+
+.less {
+    color: var(--primary-light);
+    font-weight: 600;
+}
+
+.car-info {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+
+    font-size: 30px;
+    font-weight: bold;
+
+    color: var(--primary);
+}
+
+
+/* =========================================================
+   LISTS / CARDS
+   ========================================================= */
 
 ul {
     list-style: none;
+
     padding: 0;
+
     max-width: 900px;
-    margin: 20px auto;
+
+    margin: 30px auto;
 }
 
 li {
-    font-size: 20px;
-    padding: 25px;
-    margin-bottom: 20px;
-    background-color: rgb(0, 0, 255);
-    border-radius: 10px;
-    border: 1px solid #ccc;
-	border-color: brown;
+    display: grid;
+    grid-template-columns: 190px 1fr;
+
+    gap: 10px;
+
+    font-size: 17px;
+
+    padding: 22px;
+    margin-bottom: 18px;
+
+    background: white;
+
+    border-radius: 14px;
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+li:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
 }
 
 li strong {
-    margin-left: 15px;
+    margin-left: 0;
+    color: var(--primary);
+}
+
+li span {
+    color: var(--text);
 }
 
 li a {
-    display: block;
-    margin-top: 15px;
-    font-size: 18px;
-	color: red;
+    display: inline-block;
+
+    margin-top: 12px;
+
+    font-size: 15px;
+
+    color: white;
+
+    background: var(--primary);
+
+    padding: 9px 15px;
+
+    border-radius: 8px;
+
+    transition: background-color 0.2s ease;
 }
+
+li a:hover {
+    color: white;
+    background: var(--primary-light);
+}
+
+
+/* =========================================================
+   ADMIN SECTION BUTTONS
+   ========================================================= */
+
+.mod {
+    display: inline-block;
+
+    margin: 10px 0 25px;
+    padding: 10px 18px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    color: white;
+
+    background: var(--primary);
+
+    border: none;
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    box-shadow: 0 4px 10px rgba(62, 21, 112, 0.25);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.mod:hover {
+    color: white;
+    background: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+
+.card {
+    width: min(450px, calc(100% - 40px));
+
+    margin: 70px auto 25px;
+
+    padding: 35px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow);
+}
+
+.card form > div:not(.form-actions) {
+    margin-bottom: 18px;
+}
+
+.card label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    color: var(--text);
+}
+
+.card input {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    font-size: 15px;
+
+    color: var(--text);
+
+    background: #fafaff;
+
+    border: 1px solid #d9dbe5;
+    border-radius: 8px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.card input:focus {
+    border-color: var(--primary-light);
+
+    box-shadow: 0 0 0 3px rgba(108, 53, 168, 0.12);
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
 .form-actions {
     display: flex;
-    gap: 0.75rem;
+
+    gap: 12px;
+
     align-items: center;
-    margin-top: 1rem;
+
+    margin-top: 22px;
 }
+
 .btn {
     display: inline-block;
-    padding: 6px 16px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 500;
+
+    padding: 11px 18px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: bold;
+
     cursor: pointer;
-    border: 0.5px solid rgba(0,0,0,0.15);
-    background: transparent;
-    color: #1a1a1a;
-    transition: background-color 0.15s, transform 0.1s;
+
+    border: none;
+
+    background: #e8e8f0;
+
+    color: var(--text);
+
     text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-light);
+    color: white;
+
+    box-shadow: 0 5px 15px rgba(62, 21, 112, 0.25);
+}
+
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.error {
+    width: min(600px, calc(100% - 40px));
+
+    margin: 25px auto;
+
+    padding: 12px 18px;
+
+    color: #9d111b;
+
+    background: #ffe5e7;
+
+    border: 1px solid #ffb8bd;
+
+    border-radius: 8px;
+
+    text-align: center;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   ADMIN PAGE
+   ========================================================= */
+
+.admin-section {
+    width: min(1100px, calc(100% - 40px));
+
+    margin: 35px auto;
+}
+
+.admin-section .sottotitolo {
+    text-align: left;
+
+    padding-bottom: 10px;
+
+    border-bottom: 2px solid #e5e1eb;
+}
+
+.admin-item {
+    padding: 18px 20px;
+
+    margin-bottom: 10px;
+
+    background: white;
+
+    border-radius: 10px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   EMPTY STATES
+   ========================================================= */
+
+.empty-message {
+    width: min(700px, calc(100% - 40px));
+
+    margin: 30px auto;
+
+    padding: 25px;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    background: white;
+
+    border-radius: 12px;
+
+    box-shadow: var(--shadow);
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    #services,
+    #otherServices {
+        grid-template-columns: 1fr;
+    }
+
+    #contatti {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    #pageName {
+        left: 5%;
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 650px) {
+
+    #titolo {
+        height: 220px;
+    }
+
+    #pageName {
+        top: 50%;
+
+        max-width: 80%;
+
+        font-size: 25px;
+    }
+
+    #login,
+    #register {
+        top: auto;
+        bottom: 18px;
+
+        padding: 8px 12px;
+
+        font-size: 13px;
+    }
+
+    #login {
+        left: 5%;
+        right: auto;
+    }
+
+    #register {
+        left: auto;
+        right: 5%;
+    }
+
+    #services,
+    #otherServices {
+        padding: 0 15px;
+        margin: 30px auto;
+    }
+
+    #leftImg,
+    #rightImg {
+        height: 220px;
+    }
+
+    li {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+
+    #contatti {
+        padding: 35px 20px;
+    }
+}
+
+/* =========================================================
+   MANAGEMENT PAGES
+   Auto / Ticket / Ricambio
+   ========================================================= */
+
+.management-page {
+    width: min(800px, calc(100% - 40px));
+    margin: 45px auto 70px;
+}
+
+.management-card {
+    width: 100%;
+    margin: 0 0 30px;
+}
+
+.management-title {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.management-title h1 {
+    margin: 0 0 5px;
+
+    color: var(--primary);
+
+    font-size: 24px;
+}
+
+.management-title p {
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+.management-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 55px;
+    height: 55px;
+
+    flex-shrink: 0;
+
+    font-size: 25px;
+
+    background: #f0eafa;
+
+    border-radius: 14px;
+}
+
+
+/* Select */
+
+.card select {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    font-size: 15px;
+
+    color: var(--text);
+
+    background: #fafaff;
+
+    border: 1px solid #d9dbe5;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.card select:focus {
+    border-color: var(--primary-light);
+
+    box-shadow:
+        0 0 0 3px rgba(108, 53, 168, 0.12);
+}
+
+
+/* Field errors */
+
+.field-error {
+    display: block;
+
+    margin-top: 6px;
+
+    color: var(--danger);
+
+    font-size: 13px;
+}
+
+
+/* Danger cards */
+
+.danger-card {
+    border-top: 4px solid var(--danger);
+}
+
+.danger-card .management-icon {
+    background: #ffeaec;
+}
+
+.danger-card .management-title h1 {
+    color: #b4232d;
+}
+
+
+/* Danger button */
+
+.btn-danger {
+    color: white;
+
+    background: var(--danger);
+}
+
+.btn-danger:hover {
+    color: white;
+
+    background: #c92f3a;
+
+    box-shadow:
+        0 5px 15px rgba(230, 57, 70, 0.25);
+}
+
+
+/* =========================================================
+   TICKETS PAGE
+   ========================================================= */
+
+.tickets-page {
+    min-height: 100vh;
+}
+
+.ticket-car-header {
+    max-width: 900px;
+
+    margin: 35px auto 20px;
+    padding: 0 20px;
+}
+
+.ticket-car-header .sottotitolo {
+    margin-top: 0;
+}
+
+.ticket-car-header .sottotitolo h1 {
+    font-size: 27px;
+}
+
+
+.plate-badge {
+    display: inline-block;
+
+    padding: 5px 12px;
+
+    font-size: 22px;
+
+    color: white;
+
+    background: var(--secondary);
+
+    border-radius: 7px;
+
+    letter-spacing: 1px;
+}
+
+
+/* Ticket list */
+
+.ticket-list {
+    width: min(900px, calc(100% - 40px));
+
+    margin: 30px auto 40px;
+}
+
+
+/* Individual ticket */
+
+.ticket-card {
+    margin-bottom: 22px;
+
+    overflow: hidden;
+
+    background: white;
+
+    border: 1px solid var(--border);
+    border-radius: 15px;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.ticket-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow: var(--shadow-hover);
+}
+
+
+/* Ticket header */
+
+.ticket-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 17px 22px;
+
+    background: linear-gradient(
+        135deg,
+        var(--secondary),
+        var(--primary)
+    );
+
+    color: white;
+}
+
+.ticket-number {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.ticket-status {
+    padding: 5px 12px;
+
+    color: white;
+
+    background: rgba(255, 255, 255, 0.18);
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* Ticket body */
+
+.ticket-body {
+    padding: 20px 22px;
+}
+
+.ticket-row {
+    display: grid;
+
+    grid-template-columns: 190px 1fr;
+
+    gap: 15px;
+
+    padding: 13px 0;
+
+    border-bottom: 1px solid #eeeeF2;
+}
+
+.ticket-row:last-child {
+    border-bottom: none;
+}
+
+.ticket-label {
+    font-weight: bold;
+
+    color: var(--primary);
+}
+
+.ticket-value {
+    color: var(--text);
+}
+
+.ticket-cost {
+    color: var(--success);
+
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* Back button */
+
+.ticket-back {
+    display: flex;
+    justify-content: center;
+
+    margin: 30px auto 60px;
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.loading-card {
+    width: min(500px, calc(100% - 40px));
+
+    margin: 100px auto;
+
+    padding: 45px 30px;
+
+    text-align: center;
+
+    background: white;
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow);
+}
+
+.loading-card h2 {
+    color: var(--primary);
+}
+
+.loading-card p {
+    color: var(--muted);
+}
+
+.loading-icon {
+    font-size: 40px;
+
+    animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   TICKET RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .management-page {
+        width: calc(100% - 25px);
+        margin-top: 25px;
+    }
+
+    .management-card {
+        padding: 25px 20px;
+    }
+
+    .management-title {
+        gap: 12px;
+    }
+
+    .management-title h1 {
+        font-size: 21px;
+    }
+
+    .management-icon {
+        width: 45px;
+        height: 45px;
+
+        font-size: 21px;
+    }
+
+    .ticket-list {
+        width: calc(100% - 25px);
+    }
+
+    .ticket-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .ticket-row {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .ticket-car-header {
+        padding: 0 12px;
+    }
+
+    .car-info {
+        flex-wrap: wrap;
+
+        font-size: 23px;
+    }
+
+    .plate-badge {
+        font-size: 18px;
+    }
 }

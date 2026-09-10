@@ -2,76 +2,106 @@
 <html lang="it"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-	  <head>
-		<title>Home</title>
-		<link rel="stylesheet" th:href="@{/css/style.css}"/>
-	  </head>
-	  <body>
-	  	<div id="titolo">
-	     		<img th:src="@{/images/titleBackground.jpg}" id="sfondoTitolo"/>
-	     		<strong id="pageName">🚗 DOTTOR VEICOLO 🩺</strong>
-		  		<a th:href="@{/login}" id="login">area personale</a>
-		  		<a th:href="@{/register}" id="register">register</a>
-	  	</div>
 
-	  	<div id="services">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dottor Veicolo - Home</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
 
-	  		<div>
-	          		<strong class="sottotitolo">Manutenzione periodica</strong>
-	          		<img th:src="@{/images/leftImg.jpg}" id="leftImg"/>
+<body>
 
-	          		<h1 class="scritta">✅ Tagliando certificato</h1>
-	         			<h1 class="scritta">✅ Controllo e rabbocco liquidi</h1>
-	          		<h1 class="scritta">✅ Checkup stagionale</h1>
-	          		<h1 class="scritta">✅ Tagliando certificato Casa Madre</h1>
-	          		<h1 class="scritta">✅ Altro...</h1>
-	      		</div>
+    <header id="titolo">
+        <img th:src="@{/images/titleBackground.jpg}" id="sfondoTitolo"/>
 
-	      		<div>
-	          		<strong class="sottotitolo">Riparazione motore</strong>
-	          		<img th:src="@{/images/rightImg.jpg}" 	id="rightImg"/>
-	          		<h1 class="scritta">✅ Analisi prestazioni</h1>
-	         			<h1 class="scritta">✅ Controllo/pulizia iniettori</h1>
-	          		<h1 class="scritta">✅ Sostituzione candele/radiatore</h1>
-	          		<h1 class="scritta">✅ Pulizia/sostituzione iniettori</h1>
-	          		<h1 class="scritta">✅ Altro...</h1>
-	      		</div>
-	  	</div>
-	  	
-	  	<h1 id="linea"> .    </h1>
-	  	
-	  	<div id="otherServices">
-	  		
-	  		<div>
-	  			<h1 class="scritta">⚫ Sostituzione liquido/pastiglie freni</h1>
-	  			<h1 class="scritta">⚫ Manutenzione servosterzo</h1>
-	  			<h1 class="scritta">⚫ Diagnosi digitale</h1>
-	  			<h1 class="scritta">⚫ Controllo gas di scarico</h1>
-	  		</div>
+        <strong id="pageName">🚗 DOTTOR VEICOLO 🩺</strong>
 
-	  		<div>
-	  			<h1 class="scritta">⚫ Manutenzione aria condizionata</h1>
-	  			<h1 class="scritta">⚫ Manutenzione frizione</h1>	
-	  			<h1 class="scritta">⚫ Sostituzione batteria</h1>
-	  			<h1 class="scritta">⚫ Rotazione pneumatici</h1>
-	  		</div>
-	  		
-	  	</div>
+        <a th:href="@{/login}" id="login">Area personale</a>
+        <a th:href="@{/register}" id="register">Registrati</a>
+    </header>
 
-	  	<div id="contatti">
-	  		<div>
-	  			<h2 id="contatti1"> per ulteriori info o prenotare un controllo</h2>
-	  			<h2 id="contatti">Marco   +39 1234567890</h2>
-	  			<h2 id="contatti">Lorenzo +39 0987654321</h2>
-	  			<h2 id="contatti">Anna    +39 1029384756</h2>
-	  		</div>
-	  		<div>
-	  			<h2 id="contatti1">seguici sui social</h2>
-	  			<h2 id="contatti">@Dottor_veicolo</h2>
-	  			<h2 id="contatti">dottor.veicolo@finto.com</h2>
 
-	  		</div>
-	  	</div>
+    <main>
 
-	  </body>
+        <section id="services">
+
+            <div>
+                <strong class="sottotitolo">
+                    Manutenzione periodica
+                </strong>
+
+                <img th:src="@{/images/leftImg.jpg}" id="leftImg"/>
+
+                <h1 class="scritta">✅ Tagliando certificato</h1>
+                <h1 class="scritta">✅ Controllo e rabbocco liquidi</h1>
+                <h1 class="scritta">✅ Checkup stagionale</h1>
+                <h1 class="scritta">✅ Tagliando certificato Casa Madre</h1>
+                <h1 class="scritta">✅ Altro...</h1>
+            </div>
+
+
+            <div>
+                <strong class="sottotitolo">
+                    Riparazione motore
+                </strong>
+
+                <img th:src="@{/images/rightImg.jpg}" id="rightImg"/>
+
+                <h1 class="scritta">✅ Analisi prestazioni</h1>
+                <h1 class="scritta">✅ Controllo/pulizia iniettori</h1>
+                <h1 class="scritta">✅ Sostituzione candele/radiatore</h1>
+                <h1 class="scritta">✅ Pulizia/sostituzione iniettori</h1>
+                <h1 class="scritta">✅ Altro...</h1>
+            </div>
+
+        </section>
+
+
+        <div id="linea"></div>
+
+
+        <section id="otherServices">
+
+            <div>
+                <h1 class="scritta">⚫ Sostituzione liquido/pastiglie freni</h1>
+                <h1 class="scritta">⚫ Manutenzione servosterzo</h1>
+                <h1 class="scritta">⚫ Diagnosi digitale</h1>
+                <h1 class="scritta">⚫ Controllo gas di scarico</h1>
+            </div>
+
+            <div>
+                <h1 class="scritta">⚫ Manutenzione aria condizionata</h1>
+                <h1 class="scritta">⚫ Manutenzione frizione</h1>
+                <h1 class="scritta">⚫ Sostituzione batteria</h1>
+                <h1 class="scritta">⚫ Rotazione pneumatici</h1>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer id="contatti">
+
+        <div>
+            <h2 id="contatti1">
+                Per ulteriori informazioni o per prenotare un controllo
+            </h2>
+
+            <h2>Marco &nbsp; +39 1234567890</h2>
+            <h2>Lorenzo +39 0987654321</h2>
+            <h2>Anna &nbsp;&nbsp;&nbsp; +39 1029384756</h2>
+        </div>
+
+        <div>
+            <h2 id="contatti1">Seguici sui social</h2>
+
+            <h2>@Dottor_veicolo</h2>
+            <h2>dottor.veicolo@finto.com</h2>
+        </div>
+
+    </footer>
+
+</body>
 </html>

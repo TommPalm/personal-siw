@@ -1,84 +1,223 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="it"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Modifica auto</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gestione Ricambi - Dottor Veicolo</title>
+
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 
 <body>
 
-<div id="titolo">
-    <img th:src="@{/images/titleBackground.jpg}" id="sfondoTitolo"/>
-    <strong id="pageName">MODIFICA RICAMBIO</strong>
-</div>
-<p th:if="${error}" th:text="${error}" class="error"></p>
+<header id="titolo">
 
-<div class="card">
+    <img
+        th:src="@{/images/titleBackground.jpg}"
+        id="sfondoTitolo"
+        alt="Sfondo officina"/>
+
+    <strong id="pageName">
+        🔧 MODIFICA RICAMBIO
+    </strong>
+
+    <a th:href="@{/admin}" id="register">
+        Admin
+    </a>
+
+</header>
+
+
+<main class="management-page">
+
+    <p
+        th:if="${error}"
+        th:text="${error}"
+        class="error">
+    </p>
+
+
+    <!-- AGGIUNGI RICAMBIO -->
+
+    <section class="card management-card">
+
+        <div class="management-title">
+
+            <span class="management-icon">
+                📦
+            </span>
+
+            <div>
+                <h1>Gestione ricambio</h1>
+                <p>
+                    Inserisci un nuovo ricambio nel magazzino.
+                </p>
+            </div>
+
+        </div>
+
+
         <form th:action="@{/ricambio}" method="POST">
 
-			<div>
-			    <label>Nome</label>
-			    <input type="text" required th:field="${ricambio.nome}"/>
-			    <span th:if="${#fields.hasErrors('ricambio.nome')}"
-			          th:errors="${ricambio.nome}" style="color: red;"></span>
-			</div>
-			<div>
-				<label>Produttore</label>
-				<input type="text" required th:field="${ricambio.producer}"/>
-				<span th:if="${#fields.hasErrors('ricambio.producer')}"
-					  th:errors="${ricambio.producer}" style="color: red;"></span>
-			</div>
-			<div>
-				<label>Quantità</label>
-				<input type="text" required th:field="${ricambio.quantity}"/>
-				<span th:if="${#fields.hasErrors('ricambio.quantity')}"
-					  th:errors="${ricambio.quantity}" style="color: red;"></span>
-			</div>
-		
+            <div>
+
+                <label for="nome">
+                    Nome
+                </label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    required
+                    th:field="${ricambio.nome}"
+                    placeholder="Nome ricambio"/>
+
+                <span
+                    th:if="${#fields.hasErrors('ricambio.nome')}"
+                    th:errors="${ricambio.nome}"
+                    class="field-error">
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <label for="producer">
+                    Produttore
+                </label>
+
+                <input
+                    type="text"
+                    id="producer"
+                    required
+                    th:field="${ricambio.producer}"
+                    placeholder="Produttore"/>
+
+                <span
+                    th:if="${#fields.hasErrors('ricambio.producer')}"
+                    th:errors="${ricambio.producer}"
+                    class="field-error">
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <label for="quantity">
+                    Quantità
+                </label>
+
+                <input
+                    type="text"
+                    id="quantity"
+                    required
+                    th:field="${ricambio.quantity}"
+                    placeholder="Quantità disponibile"/>
+
+                <span
+                    th:if="${#fields.hasErrors('ricambio.quantity')}"
+                    th:errors="${ricambio.quantity}"
+                    class="field-error">
+                </span>
+
+            </div>
+
 
             <div class="form-actions">
-                <button type="submit" class="btn btn-primary" style="width: 50%;">Conferma </button>
-				<a th:href="@{/admin}" class="btn btn-secondary"> Annulla</a>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+                    ✓ Conferma
+                </button>
+
+                <a
+                    th:href="@{/admin}"
+                    class="btn">
+                    Annulla
+                </a>
+
             </div>
-			
 
         </form>
-    </div>
-	
-	
-	<div class="card">
-	    <form th:action="@{/ricambioRem}" method="POST">
 
-	        <div>
-	            <strong class="sottotitolo">Elimina dal magazzino</strong>
-	        </div>
+    </section>
 
-	        <div>
-	            <label for="ricambioId">Ricambio</label>
 
-	            <select id="ricambioId" name="ricambioId" required>
-	                <option value="">-- Seleziona ricambio --</option>
+    <!-- ELIMINA RICAMBIO -->
 
-	                <option th:each="ric : ${ric}"
-	                        th:value="${ric.id}"
-	                        th:text="${ric.id}">
-	                </option>
-	            </select>
-	        </div>
+    <section class="card management-card danger-card">
 
-	        <div class="form-actions">
-	            <button type="submit" class="btn btn-primary" style="width: 50%;">
-	                Conferma
-	            </button>
+        <div class="management-title">
 
-	            <a th:href="@{/admin}" id="login">
-	                Back
-	            </a>
-	        </div>
+            <span class="management-icon">
+                🗑️
+            </span>
 
-	    </form>
-	</div>
+            <div>
+                <h1>Elimina dal magazzino</h1>
+                <p>
+                    Seleziona il ricambio da rimuovere.
+                </p>
+            </div>
 
-	</body>
-	</html>
+        </div>
+
+
+        <form th:action="@{/ricambioRem}" method="POST">
+
+            <div>
+
+                <label for="ricambioId">
+                    Ricambio
+                </label>
+
+                <select
+                    id="ricambioId"
+                    name="ricambioId"
+                    required>
+
+                    <option value="">
+                        -- Seleziona ricambio --
+                    </option>
+
+                    <option
+                        th:each="ric : ${ric}"
+                        th:value="${ric.id}"
+                        th:text="${ric.id}">
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="btn btn-danger">
+                    🗑 Elimina
+                </button>
+
+                <a
+                    th:href="@{/admin}"
+                    class="btn">
+                    ← Indietro
+                </a>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</main>
+
+</body>
+</html>
