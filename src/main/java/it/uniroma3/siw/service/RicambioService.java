@@ -15,21 +15,21 @@ public class RicambioService {
 		this.repo = repo;
 	}
 	
-	@Transactional
+	@Transactional(readOnly=true)
 	public boolean existsByNome(String nome) {
 	    return repo.existsByNome(nome);
 	}
-	@Transactional
+	@Transactional(readOnly=true)
 	public boolean existsByProducer(String producer) {
 	    return repo.existsByProducer(producer);
 	}
 
 	
-	@Transactional
+	@Transactional(readOnly=true)
 	public Ricambio findById(Long id) {
 		return repo.findById(id).orElse(null);
 	}
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Ricambio> findAll(){
 		return repo.findAll();
 	}
@@ -41,15 +41,15 @@ public class RicambioService {
 	public void delete(Long id) {
 		repo.findById(id).ifPresent(repo::delete);
 	}
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Ricambio> findByNome(String nome){
 		return repo.findByNome(nome);
 	}
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Ricambio> findByProducer(String proucer){
 		return repo.findByProducerOrderByNome(proucer);
 	}
-	@Transactional
+	@Transactional(readOnly=true)
 	public Ricambio findByNomeAndProducer(String nome, String producer) {
 		return repo.findByNomeAndProducer(nome, producer);
 	}

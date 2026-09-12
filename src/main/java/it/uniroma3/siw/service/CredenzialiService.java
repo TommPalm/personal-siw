@@ -18,7 +18,7 @@ public class CredenzialiService {
 		this.repo = repo;
 	}
 	
-	@Transactional
+	@Transactional(readOnly=true)
 	public Credenziali findById(Long id) {
 		return repo.findById(id).orElse(null);
 	}
@@ -33,12 +33,16 @@ public class CredenzialiService {
 	public void delete(Long id) {
 		repo.findById(id).ifPresent(repo::delete);
 	}
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Credenziali> findAll(){
 		return repo.findAll();
 	}
-	@Transactional
+	@Transactional(readOnly=true)
 	public Credenziali findByUsername(String username){
 		return repo.findByUsername(username);
+	}
+	@Transactional(readOnly=true)
+	public boolean existsByUsername(String username) {
+		return repo.existsByUsername(username);
 	}
 }

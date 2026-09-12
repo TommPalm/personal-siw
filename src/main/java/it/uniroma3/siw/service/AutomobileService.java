@@ -16,12 +16,12 @@ public class AutomobileService {
 		this.repo = repo;
 	}
 	
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Automobile> findAll(){
 		return repo.findAll();
 	}
 	
-	@Transactional
+	@Transactional(readOnly=true)
 	public Automobile findById(Long id) {
 	    if (id == null) {
 	        return null;
@@ -39,17 +39,17 @@ public class AutomobileService {
 		repo.findById(id).ifPresent(repo::delete);
 	}
 	
-	@Transactional
+	@Transactional(readOnly=true)
 	public Automobile findByPlate(String plate) {
 		return repo.findByPlate(plate);
 	}
 	
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Automobile> findByOwner(Utente owner){
 		return repo.findByOwner(owner);
 	}
 	
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Automobile> findByModelGroupByCountry(String model){
 		return repo.findByModelOrderByCountry(model);
 	}

@@ -15,12 +15,12 @@ public class UtenteService {
 		this.repo = repo;
 	}
 	
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Utente> findAll(){
 		return repo.findAll();
 	}
 	
-	@Transactional 
+	@Transactional (readOnly=true)
 	public Utente findById(Long id){
 		return repo.findById(id).orElse(null);
 	}
@@ -28,15 +28,15 @@ public class UtenteService {
 	public Utente save(Utente user) {
 		return repo.save(user);
 	}
-	@Transactional
+	@Transactional(readOnly=true)
 	public Utente findByNome(String name){
 		return repo.findByNome(name);
 	}
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Utente> findBySurname(String surname){
 		return repo.findBySurname(surname);
 	}
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Utente> findByCellphone(int cell){
 		return repo.findByCellphone(cell);
 	}

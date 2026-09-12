@@ -18,11 +18,11 @@ public class TicketService {
 		this.autoRepo = autoRepo;
 	}
 	
-	@Transactional
+	@Transactional(readOnly=true)
 	public Ticket findById(Long id){
 		return repo.findById(id).orElse(null);
 	}
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Ticket> findAll(){
 		return repo.findAll();
 	}
@@ -36,15 +36,15 @@ public class TicketService {
 	public void delete(Long id) {
 		repo.findById(id).ifPresent(repo::delete);
 	}
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Ticket> findByAutoOrderByCost(Automobile car){
 		return repo.findByCarOrderByCost(car);
 	}
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Ticket> findWip(){
 		return repo.findByState("WIP");
 	}
-	@Transactional
+	@Transactional(readOnly=true)
 	public List<Ticket> findCompleted(){
 		return repo.findByState("COMPLETED");
 	}

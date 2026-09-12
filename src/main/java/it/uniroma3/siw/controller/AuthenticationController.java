@@ -6,7 +6,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import it.uniroma3.siw.model.*;
-import it.uniroma3.siw.repository.*;
 import it.uniroma3.siw.service.*;
 
 import jakarta.servlet.ServletException;
@@ -16,14 +15,10 @@ import jakarta.validation.Valid;
 @Controller
 public class AuthenticationController {
 
-    private final CredenzialiRepository credenzialiRepository;
     private final CredenzialiService credServ;
 
     public AuthenticationController(
-            CredenzialiService credServ,
-            CredenzialiRepository credenzialiRepository) {
-
-        this.credenzialiRepository = credenzialiRepository;
+            CredenzialiService credServ) {
         this.credServ = credServ;
     }
 
@@ -54,7 +49,7 @@ public class AuthenticationController {
         }
 
         // Then check if username is already in use
-        if (credenzialiRepository.existsByUsername(credenziali.getUsername())) {
+        if (credServ.existsByUsername(credenziali.getUsername())) {
             model.addAttribute("error", "Username già in uso");
             return "register";
         }
