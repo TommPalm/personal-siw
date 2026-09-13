@@ -14,7 +14,7 @@ public class Automobile {
 	private String country; //paese immatricolazione
 	private String model;
 	
-	@OneToMany(mappedBy="car",cascade=CascadeType.REMOVE)
+	@OneToMany(mappedBy="car",cascade=CascadeType.REMOVE,  fetch = FetchType.EAGER)
 	private List<Ticket> tickets;
 	@ManyToOne
 	private Utente owner;

@@ -16,7 +16,7 @@ public class Utente {
 	@Column(nullable=false)
 	private int cellphone;
 	
-	@OneToMany(mappedBy="owner",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="owner",cascade=CascadeType.ALL,  fetch = FetchType.EAGER)
 	private List<Automobile> car;
 	
 	public String getNome() {
